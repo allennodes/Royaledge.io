@@ -1,0 +1,717 @@
+/* General Resets & Body Styles */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #6c757d; /* Gray */
+    --accent-color: #28a745; /* Green for success/highlights */
+    --dark-bg: #1a1a1a;
+    --dark-card-bg: #2a2a2a;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --border-color: #444444;
+    --button-hover-darken: rgba(0, 0, 0, 0.2);
+    --button-hover-lighten: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.section:nth-of-type(even) {
+    background-color: var(--dark-card-bg);
+}
+
+.text-center {
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+h1 { font-size: 3.5em; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 1.8em; }
+
+p {
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color); /* Maintain primary color on hover, or a lighter shade */
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+ul li i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.button.primary-button {
+    background-color: var(--primary-color);
+    color: var(--heading-color);
+}
+
+.button.primary-button:hover {
+    background-color: color-mix(in srgb, var(--primary-color) 85%, var(--button-hover-darken));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.button.secondary-button {
+    background-color: var(--secondary-color);
+    color: var(--heading-color);
+}
+
+.button.secondary-button:hover {
+    background-color: color-mix(in srgb, var(--secondary-color) 85%, var(--button-hover-darken));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+}
+
+.button.tertiary-button {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.button.tertiary-button:hover {
+    background-color: color-mix(in srgb, var(--dark-bg) 90%, var(--button-hover-lighten));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button.small-button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+.button.large-button {
+    padding: 15px 30px;
+    font-size: 1.1em;
+}
+
+/* Header */
+.header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--heading-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav .nav-button {
+    margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: var(--heading-color);
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav .nav-button:hover {
+    background-color: var(--primary-color);
+    color: var(--heading-color);
+    text-decoration: none;
+}
+
+.nav .nav-button.primary-button {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.nav .nav-button.primary-button:hover {
+    background-color: color-mix(in srgb, var(--primary-color) 85%, var(--button-hover-darken));
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x600?text=Subtle+Chart+Background') no-repeat center center/cover; /* Placeholder for subtle chart background */
+    text-align: center;
+    padding: 120px 20px;
+    color: var(--heading-color);
+    position: relative;
+    overflow: hidden; /* To contain any subtle animations */
+}
+
+.hero-section h1 {
+    font-size: 4.5em;
+    margin-bottom: 25px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-section p {
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-cta-buttons .button {
+    margin: 0 10px;
+    padding: 15px 35px;
+    font-size: 1.2em;
+}
+
+/* Top Performing Systems Preview & Marketplace Grid */
+.system-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.system-card {
+    background-color: var(--dark-card-bg);
+    border-radius: 8px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.system-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.system-card h3 {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.system-card p {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.system-card .equity-curve-thumbnail {
+    width: 100%;
+    height: 120px; /* Adjust as needed */
+    background-color: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden; /* Ensure image fits */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.system-card .equity-curve-thumbnail img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below image */
+}
+
+.system-card .button {
+    margin-top: auto; /* Push button to the bottom */
+}
+
+/* Value Propositions */
+.value-propositions {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.why-buy-us h2, .what-you-get h2 {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.why-buy-us ul li, .what-you-get ul li {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+/* Join Our Community CTA */
+.cta-community {
+    background-color: var(--primary-color);
+    color: var(--heading-color);
+    padding: 60px 20px;
+}
+
+.cta-community h2 {
+    color: var(--heading-color);
+    font-size: 2.8em;
+}
+
+.cta-community p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.cta-community .button {
+    background-color: var(--dark-bg);
+    color: var(--primary-color);
+}
+
+.cta-community .button:hover {
+    background-color: var(--dark-card-bg);
+    color: var(--heading-color);
+    transform: translateY(-3px);
+}
+
+/* Systems Marketplace Page */
+.systems-marketplace .filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.systems-marketplace .filters input,
+.systems-marketplace .filters select {
+    padding: 12px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background-color: var(--dark-card-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    flex: 1; /* Allow inputs to grow */
+    min-width: 180px; /* Minimum width before wrapping */
+}
+
+.systems-marketplace .filters input::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.systems-marketplace .filters button {
+    padding: 12px 25px;
+    background-color: var(--accent-color);
+    color: var(--heading-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.systems-marketplace .filters button:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 85%, var(--button-hover-darken));
+}
+
+.marketplace-card .returns-info {
+    font-size: 1.1em;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.marketplace-card .risk-metrics {
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+
+/* System Details Page */
+.system-details-page h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 3em;
+}
+
+.system-overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    background-color: var(--dark-card-bg);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 50px;
+}
+
+.backtest-summary h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-top: 0;
+}
+
+.backtest-summary p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.backtest-summary .button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.interactive-chart {
+    text-align: center;
+}
+
+.interactive-chart img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.interactive-chart .chart-note {
+    font-size: 0.85em;
+    color: var(--secondary-color);
+    margin-top: 10px;
+}
+
+.strategy-highlights {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: var(--dark-card-bg);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.strategy-highlights h3 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 30px;
+}
+
+.strategy-highlights ul li {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.strategy-highlights ul li i {
+    color: var(--accent-color);
+    font-size: 1.2em;
+}
+
+.buy-now-section {
+    text-align: center;
+    background-color: var(--primary-color);
+    padding: 50px;
+    border-radius: 8px;
+    color: var(--heading-color);
+}
+
+.buy-now-section h3 {
+    color: var(--heading-color);
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.buy-now-section .price {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.buy-now-section p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.buy-now-section .payment-options .button {
+    margin: 10px;
+    background-color: var(--dark-bg);
+    color: var(--primary-color);
+}
+
+.buy-now-section .payment-options .button:hover {
+    background-color: var(--dark-card-bg);
+    color: var(--heading-color);
+    transform: translateY(-3px);
+}
+
+.buy-now-section .small-text {
+    font-size: 0.85em;
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
+
+/* Future Contributor CTA */
+.contributor-cta {
+    background-color: var(--dark-card-bg);
+    padding: 60px 20px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contributor-cta h2 {
+    color: var(--primary-color);
+    font-size: 2.8em;
+}
+
+.contributor-cta p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.contributor-cta .button {
+    background-color: var(--accent-color);
+    color: var(--heading-color);
+}
+
+.contributor-cta .button:hover {
+    background-color: color-mix(in srgb, var(--accent-color) 85%, var(--button-hover-darken));
+}
+
+/* About Page */
+.about-page h2 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.about-page p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.about-page .cta-about {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Contact Page */
+.contact-page h2 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.contact-page p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-page strong {
+    color: var(--heading-color);
+}
+
+.faq-section {
+    margin-top: 40px;
+    background-color: var(--dark-card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.faq-section h3 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+}
+
+.faq-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.faq-section ul li {
+    background-color: var(--dark-bg);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    display: block; /* Override flex for list items */
+}
+
+.faq-section ul li strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: var(--heading-color);
+}
+
+/* Footer */
+.footer {
+    background-color: #000;
+    color: var(--secondary-color);
+    padding: 30px 0;
+    font-size: 0.9em;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-nav a {
+    color: var(--secondary-color);
+    margin: 0 10px;
+}
+
+.footer-nav a:hover {
+    color: var(--primary-color);
+}
+
+/* Utility Class for Toggling Visibility */
+.hidden {
+    display: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .hero-section h1 {
+        font-size: 3.5em;
+    }
+    .hero-section p {
+        font-size: 1.2em;
+    }
+    .grid-2-col, .system-overview-grid {
+        grid-template-columns: 1fr;
+    }
+    .why-buy-us, .what-you-get {
+        margin-bottom: 40px;
+    }
+    .system-overview-grid {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav {
+        margin-top: 20px;
+    }
+    .nav .nav-button {
+        margin: 0 5px;
+        padding: 8px 15px;
+    }
+    .hero-section {
+        padding: 80px 15px;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .hero-cta-buttons .button {
+        display: block;
+        margin: 15px auto;
+        width: 80%;
+    }
+    .system-cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .section {
+        padding: 60px 0;
+    }
+    .systems-marketplace .filters {
+        flex-direction: column;
+    }
+    .systems-marketplace .filters input,
+    .systems-marketplace .filters select,
+    .systems-marketplace .filters button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .system-details-page h1 {
+        font-size: 2.2em;
+    }
+    .buy-now-section .payment-options .button {
+        width: 90%;
+        margin: 10px auto;
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2em; }
+    .hero-section h1 {
+        font-size: 2.2em;
+    }
+    .hero-section p {
+        font-size: 1em;
+    }
+    .system-card {
+        padding: 20px;
+    }
+    .buy-now-section .price {
+        font-size: 2.5em;
+    }
+}
