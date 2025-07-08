@@ -8,12 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const aboutPageCta = document.querySelector('.about-page .cta-about a');
 
     const sections = {
-        'home': document.getElementById('top-performing-systems'), // Home includes top systems, value props, community
-        'performance': document.getElementById('top-performing-systems'), // 'See Performance' currently points to top systems
+        'home': document.getElementById('top-performing-systems'),
+        'performance': document.getElementById('top-performing-systems'),
         'systems-marketplace': document.getElementById('systems-marketplace'),
         'about-us': document.getElementById('about-us'),
         'contact-us': document.getElementById('contact-us'),
-        // Add more specific system detail pages if needed, e.g.:
         'system-details-nvda': document.getElementById('system-details-nvda'),
         'system-details-aapl': document.getElementById('system-details-aapl'),
         'system-details-googl': document.getElementById('system-details-googl'),
@@ -23,57 +22,57 @@ document.addEventListener('DOMContentLoaded', () => {
         'system-details-msft': document.getElementById('system-details-msft'),
     };
 
-    // Helper to show a specific section and hide others
     const showSection = (targetId) => {
-        // Hide all main sections
         for (const key in sections) {
             if (sections[key]) {
                 sections[key].classList.add('hidden');
             }
         }
 
-        // Show the target section
         if (sections[targetId]) {
             sections[targetId].classList.remove('hidden');
-        }
-
-        // Special handling for the hero section on the homepage
-        const heroSection = document.querySelector('.hero-section');
-        if (targetId === 'home' || targetId === 'performance') {
-            heroSection.classList.remove('hidden');
-            // Ensure other home sections are visible too
-            document.querySelector('.value-propositions').classList.remove('hidden');
-            document.querySelector('.cta-community').classList.remove('hidden');
-            document.querySelector('.contributor-cta').classList.remove('hidden');
         } else {
-            heroSection.classList.add('hidden');
-            document.querySelector('.value-propositions').classList.add('hidden');
-            document.querySelector('.cta-community').classList.add('hidden');
-            document.querySelector('.contributor-cta').classList.add('hidden');
+            console.warn(`Section "${targetId}" not found`);
         }
 
-        // Scroll to the top of the shown section (or just top of page)
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        const heroSection = document.querySelector('.hero-section');
+        const valueProps = document.querySelector('.value-propositions');
+        const ctaCommunity = document.querySelector('.cta-community');
+        const contributorCta = document.querySelector('.contributor-cta');
+
+        if (targetId === 'home' || targetId === 'performance') {
+            heroSection?.classList.remove('hidden');
+            valueProps?.classList.remove('hidden');
+            ctaCommunity?.classList.remove('hidden');
+            contributorCta?.classList.remove('hidden');
+        } else {
+            heroSection?.classList.add('hidden');
+            valueProps?.classList.add('hidden');
+            ctaCommunity?.classList.add('hidden');
+            contributorCta?.classList.add('hidden');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // Event listener for header navigation
     headerNavButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = e.target.getAttribute('href').substring(1); // Remove '#'
+            const href = e.target.getAttribute('href');
+            if (!href) return;
+
+            const targetId = href.substring(1);
             if (targetId === 'browse-systems' || targetId === 'home') {
-                showSection('systems-marketplace'); // "Browse Systems" from header goes to marketplace
+                showSection('systems-marketplace');
             } else if (targetId === 'performance') {
-                 showSection('home'); // "See Performance" from header stays on homepage initially
-                 document.getElementById('top-performing-systems').scrollIntoView({ behavior: 'smooth' });
+                showSection('home');
+                sections['home']?.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                showSection(targetId);
             }
         });
     });
 
-    // Event listener for Hero CTA buttons
     if (heroCTABrowse) {
         heroCTABrowse.addEventListener('click', (e) => {
             e.preventDefault();
@@ -84,17 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroCTASeePerformance) {
         heroCTASeePerformance.addEventListener('click', (e) => {
             e.preventDefault();
-            showSection('home'); // Stays on home, just ensure it's visible
-            document.getElementById('top-performing-systems').scrollIntoView({ behavior: 'smooth' });
+            showSection('home');
+            sections['home']?.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
-    // Event listeners for "View Full Stats" and "View Details" buttons
-    // These will simulate navigation to specific system detail pages
     viewFullStatsButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = e.target.getAttribute('href').substring(1); // e.g., 'system-details-nvda'
+            const href = e.target.getAttribute('href');
+            if (!href) return;
+
+            const targetId = href.substring(1);
             showSection(targetId);
         });
     });
@@ -102,35 +102,39 @@ document.addEventListener('DOMContentLoaded', () => {
     viewDetailsButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = e.target.getAttribute('href').substring(1);
+            const href = e.target.getAttribute('href');
+            if (!href) return;
+
+            const targetId = href.substring(1);
             showSection(targetId);
         });
     });
 
-    // Event listeners for Footer navigation
     footerNavLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = e.target.getAttribute('href').substring(1);
+            const href = e.target.getAttribute('href');
+            if (!href) return;
+
+            const targetId = href.substring(1);
             if (sections[targetId]) {
                 showSection(targetId);
             } else {
-                // For privacy policy, terms of service, etc., they'd be separate files or modals
-                console.log(`Link to ${targetId} clicked. Implement separate page/modal for this.`);
+                console.log(`Footer link "${targetId}" clicked. Modal or separate page may be needed.`);
             }
         });
     });
 
-    // Event listener for About Page CTA
     if (aboutPageCta) {
         aboutPageCta.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = e.target.getAttribute('href').substring(1);
+            const href = e.target.getAttribute('href');
+            if (!href) return;
+
+            const targetId = href.substring(1);
             showSection(targetId);
         });
     }
 
-
-    // Initial page load: show only the home sections
     showSection('home');
 });
